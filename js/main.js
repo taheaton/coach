@@ -4,28 +4,39 @@ import moment from 'moment';
 
 import GoodGuy from './goodguy';
 import BadGuy from './badguy';
+import Button from './button';
 
+console.log('h');
 
 // Good Guy Instance
-let msu = new GoodGuy();
+let mario = new GoodGuy();
 
 // Bad Guy Instance
-let stu = new BadGuy();
+let bowser = new BadGuy();
 
+//Button Instance
+let start = new Button({
+  text: 'Start',
+});
 
 // DOM Nodes Selected
 let ggHealth = $('.ggHealth');
 let bgHealth = $('.bgHealth');
-
 let ggAttack = $('.ggAttack');
+let startB = $('.startB');
 
 // Show current (default) health
-ggHealth.text(msu.health);
-bgHealth.text(stu.health);
+ggHealth.text(mario.health);
+bgHealth.text(bowser.health);
+startB.text(start.text);
 
 
 // Setting up ON Events
-ggAttack.on('click', function () {
+  startB.on('click', function () {
+    $("button").click(function(){
+        $("p").removeClass("action");
+    });
+  ggAttack.on('click', function () {
 
   // Generate a random amount of hit points
   // Then attack!!!
@@ -34,7 +45,7 @@ ggAttack.on('click', function () {
 
   if (bowser.health <= 0) {
     bgHealth.text('Defeated');
-    alert('Mario Wins!!');
+    alert('Mario Wins!!')
   } else {
     bgHealth.text(bowser.health);
     alert('Bowser Fights Back!!!');
@@ -48,5 +59,3 @@ ggAttack.on('click', function () {
 
   console.log(bowser);
 });
-
-

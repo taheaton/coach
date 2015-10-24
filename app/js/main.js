@@ -23,6 +23,28 @@ module.exports = exports["default"];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var Button = function Button(obj) {
+  obj = obj || {};
+
+  this.health = 100;
+  this.text = obj.text;
+  this.color = obj.color;
+
+  this.hit = function (num) {
+    var hitPoints = num || 10;
+    return this.health = this.health - hitPoints;
+  };
+};
+
+exports["default"] = Button;
+module.exports = exports["default"];
+
+},{}],3:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 var GoodGuy = function GoodGuy() {
 
   this.health = 100;
@@ -36,7 +58,7 @@ var GoodGuy = function GoodGuy() {
 exports["default"] = GoodGuy;
 module.exports = exports["default"];
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -61,21 +83,33 @@ var _badguy = require('./badguy');
 
 var _badguy2 = _interopRequireDefault(_badguy);
 
+var _button = require('./button');
+
+var _button2 = _interopRequireDefault(_button);
+
+console.log('hi');
+
 // Good Guy Instance
-var msu = new _goodguy2['default']();
+var mario = new _goodguy2['default']();
 
 // Bad Guy Instance
-var stu = new _badguy2['default']();
+var bowser = new _badguy2['default']();
+
+//Button Instance
+var start = new _button2['default']({
+  text: 'Start'
+});
 
 // DOM Nodes Selected
 var ggHealth = (0, _jquery2['default'])('.ggHealth');
 var bgHealth = (0, _jquery2['default'])('.bgHealth');
-
 var ggAttack = (0, _jquery2['default'])('.ggAttack');
+var startB = (0, _jquery2['default'])('.startB');
 
 // Show current (default) health
-ggHealth.text(msu.health);
-bgHealth.text(stu.health);
+ggHealth.text(mario.health);
+bgHealth.text(bowser.health);
+startB.text(start.text);
 
 // Setting up ON Events
 ggAttack.on('click', function () {
@@ -102,7 +136,7 @@ ggAttack.on('click', function () {
   console.log(bowser);
 });
 
-},{"./badguy":1,"./goodguy":2,"jquery":4,"moment":5,"underscore":6}],4:[function(require,module,exports){
+},{"./badguy":1,"./button":2,"./goodguy":3,"jquery":5,"moment":6,"underscore":7}],5:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -9314,7 +9348,7 @@ return jQuery;
 
 }));
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 //! moment.js
 //! version : 2.10.6
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -12510,7 +12544,7 @@ return jQuery;
     return _moment;
 
 }));
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -14060,7 +14094,7 @@ return jQuery;
   }
 }.call(this));
 
-},{}]},{},[3])
+},{}]},{},[4])
 
 
 //# sourceMappingURL=main.js.map
